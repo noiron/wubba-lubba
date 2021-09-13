@@ -28,7 +28,7 @@ class Agent implements IAgent {
     this.vy = vy;
   }
 
-  step() {
+  step(agents: Agent[]) {
     this.x += this.vx;
     this.y += this.vy;
 
@@ -37,6 +37,15 @@ class Agent implements IAgent {
     }
     if (this.y + this.radius > HEIGHT || this.y < this.radius) {
       this.vy = -this.vy;
+    }
+
+    // 检查 agent 之间是否有碰撞
+    for (let agent of agents) {
+      const d = dist(this, agent);
+      if (this !== agent && d < this.radius + agent.radius) {
+        this.vx = -this.vx;
+        this.vy = -this.vy;
+      }
     }
   }
 
@@ -53,3 +62,9 @@ class Agent implements IAgent {
 }
 
 export default Agent;
+
+function dist(agent1: Agent, agent2: Agent) {
+  const dx = agent1.x - agent2.x;
+  const dy = agent1.y - agent2.y;
+  return Math.sqrt(dx * dx + dy * dy);
+}
