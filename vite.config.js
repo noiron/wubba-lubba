@@ -1,3 +1,5 @@
+const config = require('./package.json');
+
 export default {
-  base: '/wubba-lubba/'
+  base: `/${config.name}/`
 }
