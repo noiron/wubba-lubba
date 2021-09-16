@@ -2,6 +2,7 @@ import Agent from './agent';
 import { random } from 'lodash';
 import { HEIGHT, WIDTH } from './constants';
 import './style.css';
+import { isIntersect } from './utils';
 
 const canvas = document.getElementById('canvas') as HTMLCanvasElement;
 canvas.width = WIDTH;
@@ -69,8 +70,7 @@ function addAgent(x: number, y: number) {
   // 确保不会和其他 agent 相接触
   for (let i = 0; i < agents.length; i++) {
     const agent = agents[i];
-    const minDist = agent.radius + radius;
-    if (Math.abs(agent.x - x) <= minDist && Math.abs(agent.y - y) <= minDist) {
+    if (isIntersect({ x, y, radius }, agent)) {
       return;
     }
   }

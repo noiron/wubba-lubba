@@ -42,10 +42,9 @@ class Agent implements IAgent {
     // 检查 agent 之间是否有碰撞
     for (let agent of agents) {
       const d = dist(this, agent);
-      if (this !== agent && d + 1 < this.radius + agent.radius) {
+      if (this !== agent && d <= this.radius + agent.radius) {
         this.vx = -this.vx;
         this.vy = -this.vy;
-        break;
       }
     }
   }
