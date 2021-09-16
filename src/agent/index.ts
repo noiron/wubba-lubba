@@ -58,7 +58,7 @@ class Agent implements IAgent {
     ctx.fill();
     ctx.fillStyle = 'rgba(0, 0, 0, 1)';
     ctx.font = '16px Arial';
-    ctx.fillText(this.name, this.x - 5, this.y - this.radius);
+    ctx.fillText(String(this.name), this.x - 5, this.y - this.radius);
   }
 }
 
