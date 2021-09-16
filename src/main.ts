@@ -88,3 +88,6 @@ function addAgent(x: number, y: number) {
 }
 
 // TODO: 整体的速度可通过一个拖动控件来控制
+
+
+console.log('test.');
