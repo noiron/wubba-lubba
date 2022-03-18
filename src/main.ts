@@ -2,7 +2,7 @@ import Agent from './agent';
 import { random } from 'lodash';
 import { HEIGHT, WIDTH } from './constants';
 import './style.css';
-import { isIntersect } from './utils';
+import { clearCanvas, isIntersect } from './utils';
 
 const canvas = document.getElementById('canvas') as HTMLCanvasElement;
 canvas.width = WIDTH;
@@ -40,7 +40,7 @@ agents.push(
 );
 
 function step() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  clearCanvas(ctx);
 
   for (let agent of agents) {
     agent.step(agents);
@@ -65,7 +65,7 @@ canvas.addEventListener('click', function (e) {
 });
 
 function addAgent(x: number, y: number) {
-  const radius = random(5, 30);
+  const radius = random(10, 50);
 
   // 确保不会和其他 agent 相接触
   for (let i = 0; i < agents.length; i++) {
@@ -87,4 +87,4 @@ function addAgent(x: number, y: number) {
   );
 }
 
-// TODO: 整体的速度可通过一个拖动控件来控制
+// todo: 整体的速度可通过一个拖动控件来控制
